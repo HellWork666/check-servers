@@ -1,0 +1,16 @@
+{
+  "require": {
+    "geerlingguy/ping": "^1.2",
+    "ext-pdo": "*",
+    "slim/slim": "4.*",
+    "twig/twig": "*",
+    "slim/psr7": "^1.6",
+    "php-di/php-di": "*",
+    "ext-curl": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "src\\": "src/"
+    }
+  }
+}

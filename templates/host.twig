@@ -1,0 +1,26 @@
+{% extends 'base.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-6">
+            <form action="/server/update" method="POST">
+                <fieldset disabled>
+                    <div class="mb-3">
+                        <label for="id" class="form-label">ID</label>
+                        <input type="text" id="id" class="form-control" name="id" value="{{ host.id|e }}">
+                    </div>
+                </fieldset>
+                <input type="hidden" id="id" class="form-control" name="id" value="{{ host.id|e }}">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ host.name|e }}">
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <input type="text" class="form-control" id="description" name="description" value="{{ host.description|e }}">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

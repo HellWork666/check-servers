@@ -1,0 +1,61 @@
+{% extends 'base.twig' %}
+
+{% block body %}
+    <style>
+        .status-red {
+            color: red; /* или другой красный цвет */
+            font-size: larger;
+            background-color: rgb(255, 237, 189);
+        }
+
+        .status-green {
+            color: green; /* или другой зеленый цвет */
+            font-size: larger;
+        }
+    </style>
+    <div class="col-12 pt-1 pb-1">
+        <div class="d-grid gap-2 d-md-block">
+            <a class="btn btn-outline-success" href="/server/add" role="button">&#x271A;</a>
+            <a class="btn btn-outline-info" href="/servers/status_update" role="button">&#8635;</a>
+        </div>
+    </div>
+    <div class="col-12">
+        <table class="table border text-center">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+                <th scope="col">Created</th>
+                <th scope="col">Updated</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for host in hosts %}
+                <tr>
+                    <th scope="row">{{ host.id|e }}</th>
+                    <td>{{ host.name|e }}</td>
+                    <td>{{ host.description|e }}</td>
+                    {% if host.status|e == 0 %}
+                        <td class="status-red">&#9888;</td>
+                    {% else %}
+                        <td class="status-green">&#9989;</td>
+                    {% endif %}
+                    <td>{{ host.created|e }}</td>
+                    <td>{{ host.updated|e }}</td>
+                    <td>
+                        <div class="d-grid gap-2 d-md-block">
+                            <a class="btn btn-outline-primary" href="/server/{{ host.id|e }}" role="button">&#9998;</a>
+                            <a class="btn btn-outline-info" href="/servers/status_update/{{ host.id|e }}" role="button">&#8635;</a>
+                            <a class="btn btn-outline-danger" href="/server/delete/{{ host.id|e }}" role="button">&#10060;</a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
